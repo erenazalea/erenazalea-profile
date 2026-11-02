@@ -21,12 +21,13 @@ export default function Home() {
 
   return (
     <div
-      className={`h-screen w-screen flex flex-col justify-between overflow-hidden font-sans transition-colors duration-300 ${
+      className={`min-h-screen w-full flex flex-col justify-between overflow-x-hidden font-sans transition-colors duration-300 ${
         isDarkMode ? 'bg-[#0F172A] text-slate-100' : 'bg-[#F9FBF9] text-gray-800'
       }`}
     >
       {/* 1. HEADER / NAVBAR */}
-      <header className="flex justify-end items-center px-8 py-4 shrink-0 gap-3">
+      <header className="flex justify-end items-center px-6 md:px-12 py-4 shrink-0 gap-4">
+        {/* Toggle Switch */}
         <button
           onClick={toggleTheme}
           type="button"
@@ -37,7 +38,6 @@ export default function Home() {
             isDarkMode ? 'bg-slate-700' : 'bg-gray-300'
           }`}
         >
-          {/* Lingkaran penggeser (knob) mungil */}
           <span
             className={`pointer-events-none flex h-4 w-4 transform items-center justify-center rounded-full text-[10px] shadow-sm transition-transform duration-300 ease-in-out ${
               isDarkMode
@@ -49,34 +49,32 @@ export default function Home() {
           </span>
         </button>
 
-        {/* <button className="bg-[#3B4BB1] hover:bg-[#2F3C90] cursor-pointer text-white px-6 py-2 rounded-full font-medium transition">
-          About
-        </button> */}
+        {/* Logo Erenazalea */}
         <Image
-          src="/erenazalea.png" // Path otomatis mengarah ke folder public/
-          alt="About"
-          width={64}
-          height={32}
-          className={`w-22 h-14 transition-all duration-300 ${
+          src="/erenazalea.png"
+          alt="Erenazalea Logo"
+          width={80}
+          height={40}
+          priority
+          className={`w-20 h-auto object-contain transition-all duration-300 ${
             !isDarkMode ? 'invert' : 'invert-0'
           }`}
         />
       </header>
 
-      {/* 2. MAIN CONTENT (Split Left: Hero, Right: 3x3 TikTok Grid) */}
-      <main className="flex-1 max-w-7xl mx-auto w-full px-8 grid grid-cols-1 md:grid-cols-12 items-center gap-8 overflow-hidden py-4">
+      {/* 2. MAIN CONTENT (Split Left: Hero, Right: Showcases Grid) */}
+      <main className="flex-1 max-w-7xl mx-auto w-full px-6 md:px-12 py-6 md:py-10 grid grid-cols-1 md:grid-cols-12 items-center gap-8">
         
-        {/* Sisi Kiri: Hero Text (4 atau 5 Kolom) */}
+        {/* Sisi Kiri / Atas: Hero Text */}
         <div className="md:col-span-5 flex flex-col items-start w-full">
           <span
-            className={`text-sm uppercase tracking-[0.3em] block text-left transition-colors duration-300 ${
+            className={`text-xs md:text-sm uppercase tracking-[0.3em] block text-left transition-colors duration-300 ${
               isDarkMode ? 'text-slate-400' : 'text-gray-500'
             }`}
           >
-            Welcome to my space
+            WELCOME TO MY SPACE
           </span>
-
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light mt-2 mb-4 tracking-tight flex items-baseline justify-start whitespace-nowrap">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mt-2 mb-2 md:mb-6 tracking-tight flex items-baseline justify-start whitespace-nowrap">
             <span>I am</span>
             <span
               className={`italic font-normal ml-3 inline-flex items-baseline transition-colors duration-300 ${
@@ -98,19 +96,18 @@ export default function Home() {
           </h1>
         </div>
 
-        {/* Sisi Kanan: Header Section + Grid 4 Video Horizontal */}
+        {/* Sisi Kanan / Bawah: Showcases Video */}
         <div className="md:col-span-7 w-full flex flex-col justify-center items-start">
-          {/* Judul Section */}
           <span
             className={`text-xs md:text-sm uppercase tracking-[0.3em] font-semibold mb-3 block text-left transition-colors duration-300 ${
               isDarkMode ? 'text-slate-400' : 'text-gray-500'
             }`}
           >
-            Showcases
+            SHOWCASES
           </span>
-
-          {/* Grid 4 Video */}
-          <div className="grid grid-cols-2 gap-4 w-full">
+          
+          {/* Video Grid: 1 Kolom di HP/iPad (grid-cols-1), 2 Kolom di iPad Landscape/Laptop (sm:grid-cols-2) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
             {tiktokVideos.slice(0, 4).map((video) => (
               <div
                 key={video.id}
@@ -134,11 +131,9 @@ export default function Home() {
       </main>
 
       {/* 3. FOOTER AREA */}
-      <div className="shrink-0 w-full">
-        <footer className="bg-[#E00000] text-white text-center py-2 text-sm font-medium">
-          Copyright© by <span className="italic font-bold">erenazalea</span> 2026
-        </footer>
-      </div>
+      <footer className="shrink-0 w-full bg-[#E00000] text-white text-center py-2.5 text-sm font-medium z-10">
+        Copyright© by <span className="italic font-bold">erenazalea</span> 2026
+      </footer>
     </div>
   )
 }
